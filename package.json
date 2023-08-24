@@ -1,0 +1,20 @@
+{
+  "name": "posmotri_v_okno",
+  "version": "1.0.0",
+  "description": "https://github.com/ac1deye/posmotri_v_okno",
+  "main": "index.js",
+  "scripts": {
+    "check": "prettier --check './**/style.css'",
+    "write": "prettier --write './**/style.css'",
+    "lint": "stylelint '**/style.css'",
+    "lintfix": "stylelint '**/style.css' --fix",
+    "checkAll": "npm run check && npm run lint",
+    "fixAll": "npm run write && npm run lintfix"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prettier": "^3.0.2",
+    "stylelint": "^15.10.3"
+  }
+}
