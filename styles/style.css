@@ -65,6 +65,7 @@ ol {
   display: flex;
   align-items: start;
   gap: 40px;
+  padding-bottom: 2px;
 }
 
 .search-form__fieldset {
@@ -79,7 +80,9 @@ ol {
 }
 
 .search-form__label {
-  display: inline-block;
+  display: flex;
+  gap: 5px;
+  align-items: center;
   width: fit-content;
   font-weight: 400;
   cursor: pointer;
@@ -88,6 +91,10 @@ ol {
 .search-form__label:has(:focus-visible) {
   outline: 1px solid #fff;
   outline-offset: 1px;
+}
+
+.search-form__label:has(.search-form__textfield:active) {
+  outline: none;
 }
 
 .search-form__textfield {
@@ -108,14 +115,13 @@ ol {
   color: rgb(255 255 255 / 0.7);
 }
 
-.search-form__textfield:focus {
-  outline: unset;
+.search-form__textfield:active {
+  border: 1px solid #fff;
+  outline: none;
 }
 
-.search-form__textfield:active {
-  border-right: 1px solid #fff;
-  border-left: 1px solid #fff;
-  outline: unset;
+.search-form__textfield:focus {
+  outline: none;
 }
 
 .search-form__checkbox-list {
@@ -125,17 +131,24 @@ ol {
 }
 
 .search-form__pseudo-checkbox {
-  display: inline-block;
   width: 19px;
   height: 19px;
   border: 1px solid #fff;
+  place-content: center;
   padding: 1px;
-  vertical-align: middle;
-  background-clip: content-box;
 }
 
-.search-form__checkbox:checked + .search-form__pseudo-checkbox {
+.search-form__pseudo-checkbox::before {
+  content: '';
+  display: block;
+  width: 15px;
+  height: 15px;
   background-color: #fff;
+  opacity: 0;
+}
+
+.search-form__checkbox:checked + .search-form__pseudo-checkbox::before {
+  opacity: 1;
 }
 
 .search-form__label:hover > .search-form__label-text {
@@ -197,16 +210,26 @@ ol {
 
 .content__list {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
   height: 298px;
-  overflow: scroll;
+  overflow-y: auto;
+  padding-bottom: 2px;
+}
+
+.content__list-item:not(:last-of-type) {
+  margin-bottom: 30px;
+  padding: 2px;
+}
+
+.content__list-item:has(.content__card-link_current) {
+  background-color: #545050;
+}
+
+.content__list-item:active {
+  background-color: #545050;
 }
 
 .content__card-link {
   display: block;
-  margin: 2px;
   color: #fff;
   text-decoration: none;
 }
@@ -222,10 +245,6 @@ ol {
 
 .content__card-link:focus-visible {
   outline: 1px solid white;
-}
-
-.content__card-link_current {
-  background-color: #545050;
 }
 
 .content__video-card {
@@ -259,7 +278,8 @@ ol {
 }
 
 .more-button {
-  width: 100%;
+  width: 99%;
+  margin: 0 2px;
 }
 
 .visually-hidden {
